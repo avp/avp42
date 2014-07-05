@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AVP 42 : Home</title>
+  <link rel="stylesheet" href="/stylesheets/style.css"/>
+</head>
+<body>
+{{>navbar}}
+<div class="info">
+  <h1>AVP 42</h1>
+  <h2>A puzzle for algorithmic thinkers</h2>
+  <p>
+    The puzzle is a work in progress. You can try it right now, though. When it's done there will be &mdash; you guessed it, 42 levels!
+  </p>
+  <p>
+    You should <a href="register.php">register</a>, and then you can play the puzzle.
+  </p>
+  <h3>Need help?</h3>
+  <p>
+    Collaboration amongst yourselves is encouraged.
+  </p>
+
+  <br/>
+  <h2>Scoreboard</h2>
+
+  <table class="scoreboard">
+    <thead>
+    <tr>
+      <th class="text-left">Username</th>
+      <th>Level</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each users}}
+      <tr>
+        <td>{{username}}</td>
+        <td>{{level}}</td>
+      </tr>
+    {{/each}}
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

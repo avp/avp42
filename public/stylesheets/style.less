@@ -1,7 +1,82 @@
+@import url(//fonts.googleapis.com/css?family=Inconsolata:400,700);
+
+@bg-color: #000;
+@fg-color: #0d0;
+@font-monospace: 'Inconsolata', monospace, sans-serif, serif;
+
+html, body {
+  background: @bg-color;
+  color: @fg-color;
+  font-family: @font-monospace;
+  padding: 0 30px;
+}
+
+a {
+  border-bottom: 1px solid @fg-color;
+  display: inline-block;
+  color: @fg-color;
+  text-decoration: none;
+  &:hover {
+    color: #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+}
+
 .text-left {
   text-align: left;
 }
 
 .pull-right {
   float: right;
+}
+
+.header {
+  font-size: 16px;
+  padding: 10px;
+  color: @fg-color;
+  background-color: lighten(@bg-color, 10%);
+}
+
+.link-header {
+  padding-right: 10px;
+  padding-left: 10px;
+  color: #0d0;
+}
+
+th {
+  padding-right: 5px;
+  padding-left: 5px;
+  font-size: x-large;
+}
+
+td {
+  padding-right: 10px;
+  padding-left: 5px;
+  font-size: larger;
+}
+
+.form-control {
+  background: @bg-color;
+  color: @fg-color;
+  height: 30px;
+  width: 200px;
+  box-shadow: none;
+  border: 1px solid @fg-color;
+  padding: 0 10px;
+  font-family: @font-monospace;
+  &:focus {
+    box-shadow: none;
+    outline: @fg-color auto 5px;
+  }
+}
+
+.btn-submit {
+  height: 32px;
+  border-radius: 0;
+  background: @bg-color;
+  color: @fg-color;
+  border: 1px solid @fg-color;
+  font-family: @font-monospace;
+  font-size: 15px;
+  padding-top: 0;
 }
