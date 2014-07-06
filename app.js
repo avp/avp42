@@ -8,6 +8,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var hbs = require('hbs');
 var db = require('./util/db');
+var favicon = require('serve-favicon');
 var MongoStore = require('connect-mongo')(session);
 
 passport.use(new LocalStrategy(function(username, password, done) {
@@ -42,7 +43,8 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(express.static('public'));
+app.use(express.static(__dirname + '/public'));
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));

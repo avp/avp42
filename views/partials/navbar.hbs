@@ -1,7 +1,7 @@
 <div class="header">
   <span class="text-left link-header">
     <a href="/">Home</a>
-     | <a href="/puzzle">Puzzle</a>
+    {{#if currentUser}} | <a href="/puzzle">Puzzle</a>{{/if}}
   </span>
   <span class="pull-right link-header">
     {{#if currentUser}}
