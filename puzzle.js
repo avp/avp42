@@ -37,7 +37,7 @@ router.post('/:id(\\d+)', function(req, res) {
   if (!id || id !== req.user.level) {
     return res.send(404);
   }
-  if (CryptoJS.SHA1(req.body.password) === levels[id].answer) {
+  if (CryptoJS.SHA1(req.body.password.toLowerCase().trim()) === levels[id].answer) {
     db.setUserLevel(req.user, id + 1, function(err, user) {
       if (err) {
         throw err;
