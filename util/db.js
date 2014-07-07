@@ -29,12 +29,19 @@ module.exports.checkLogin = function(username, password, callback) {
     if (err) {
       throw err;
     }
-    var hashedPassword = CryptoJS.SHA1(password);
-    db.collection('users').findOne({username: username, password: hashedPassword}, function(err, user) {
+    db.collection('users').findOne({username: username}, function(err, user) {
       if (err) {
-        callback(err);
+        callback(err, null);
       }
-      callback(null, user);
+      if (!user) {
+        callback(null, null);
+      }
+      var hashedPassword = CryptoJS.SHA1(password + user.salt);
+      if (hashedPassword === user.password) {
+        callback(null, user);
+      } else {
+        callback(null, null);
+      }
     });
   });
 };
@@ -45,7 +52,8 @@ module.exports.createUser = function(username, password, callback) {
     if (err) {
       throw err;
     }
-    var hashedPassword = CryptoJS.SHA1(password);
+    var salt = Math.random().toString(36).slice(2);
+    var hashedPassword = CryptoJS.SHA1(password + salt);
     var collection = db.collection('users');
     collection.findOne({username: username}, function(err, user) {
       if (err) {
@@ -57,6 +65,7 @@ module.exports.createUser = function(username, password, callback) {
       collection.insert({
         username: username,
         password: hashedPassword,
+        salt: salt,
         level: 1
       }, function(err, users) {
         if (err) {
