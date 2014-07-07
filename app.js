@@ -94,6 +94,9 @@ app.get('/register', function(req, res) {
 });
 
 app.post('/register', function(req, res) {
+  if (!req.body.username || !req.body.password) {
+    return res.redirect('/register');
+  }
   db.createUser(req.body.username, req.body.password, function(err, user) {
     if (!user) {
       return res.redirect('/register?failed=true&reason=username');
