@@ -9,7 +9,7 @@ module.exports.getUsers = function(callback) {
   callback = callback || _.noop;
   MongoClient.connect(MONGO_URL, function(err, db) {
     db.collection('users').find().toArray(function(err, docs) {
-      callback(docs);
+      return callback(docs);
     });
   });
 };
@@ -31,16 +31,16 @@ module.exports.checkLogin = function(username, password, callback) {
     }
     db.collection('users').findOne({username: username}, function(err, user) {
       if (err) {
-        callback(err, null);
+        return callback(err, null);
       }
       if (!user) {
-        callback(null, null);
+        return callback(null, null);
       }
       var hashedPassword = CryptoJS.SHA1(password + user.salt);
       if (hashedPassword === user.password) {
-        callback(null, user);
+        return callback(null, user);
       } else {
-        callback(null, null);
+        return callback(null, null);
       }
     });
   });
@@ -74,7 +74,7 @@ module.exports.createUser = function(username, password, callback) {
         if (!users) {
           return callback(null, null);
         }
-        callback(null, {_id: users[0]._id.toString(), username: username, password: password, level: 1});
+        return callback(null, {_id: users[0]._id.toString(), username: username, password: password, level: 1});
       });
     });
   });
