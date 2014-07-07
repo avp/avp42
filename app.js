@@ -72,7 +72,8 @@ app.get('/', function(req, res) {
       currentUser: req.user,
       users: _.chain(users).map(function(user) {
         return { id: user._id, username: user.username, level: user.level };
-      }).sortBy('level').reverse().value()
+      }).sortBy('level').reverse().value(),
+      maxLevel: require('./levels').length - 1
     });
   });
 });

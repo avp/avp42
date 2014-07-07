@@ -9,7 +9,7 @@
   {{>navbar}}
   <h1>Register</h1>
   {{#if params.failed}}
-    <p>Username already taken.</p>
+    <p class="text-error">Username already taken.</p>
   {{/if}}
 
   <form action="/register" method="post">
