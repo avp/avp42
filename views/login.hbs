@@ -6,14 +6,16 @@
   <link rel="stylesheet" href="/stylesheets/style.css"/>
 </head>
 <body>
-  {{>navbar}}
+{{>navbar}}
 
-  <h1>Login</h1>
+<h1>Login</h1>
 
-  <form action="/login" method="post">
-    <label for="username">Username</label> <input class="form-control" type="text" name="username"> <br/> <br/>
-    <label for="password">Password</label> <input class="form-control" type="password" name="password"> <br/> <br/>
-    <input class="btn-submit" type="submit" value="Submit">
-  </form>
+<form action="/login" method="post">
+  <label for="username">Username</label>
+  <input class="form-control" id="username" type="text" name="username"> <br/> <br/>
+  <label for="password">Password</label>
+  <input class="form-control" id="password" type="password" name="password"> <br/> <br/>
+  <input class="btn-submit" type="submit" value="Submit">
+</form>
 </body>
 </html>
