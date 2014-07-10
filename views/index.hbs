@@ -28,6 +28,7 @@
   <table class="scoreboard">
     <thead>
     <tr>
+      <th>&nbsp;</th>
       <th class="text-left">Username</th>
       <th>Level</th>
     </tr>
@@ -35,6 +36,7 @@
     <tbody>
     {{#each users}}
       <tr>
+        <td class="text-right">{{plusOne @index}}</td>
         <td>{{username}}</td>
         <td>{{level}}</td>
       </tr>

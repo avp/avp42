@@ -63,6 +63,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 hbs.registerPartials(__dirname + '/views/partials');
+hbs.registerHelper('plusOne', function(x) {
+  return x + 1;
+});
 
 app.use('/puzzle', require('./puzzle'));
 
