@@ -76,6 +76,8 @@ app.get('/', function(req, res) {
       currentUser: req.user,
       users: _.chain(users).map(function(user) {
         return { id: user._id, username: user.username, level: user.level };
+      }).filter(function(user) {
+        return user.username !== 'avp';
       }).sortBy('level').reverse().value(),
       maxLevel: levels.length - 1
     });
