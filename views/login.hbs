@@ -1,9 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  {{>head}}
   <title>Login</title>
-  <link rel="stylesheet" href="/stylesheets/style.css"/>
 </head>
 <body>
 {{>navbar}}
@@ -17,5 +16,8 @@
   <input class="form-control" id="password" type="password" name="password"> <br/> <br/>
   <input class="btn-submit" type="submit" value="Submit">
 </form>
+<p>
+  No account? <a href="/register">Make an account.</a>
+</p>
 </body>
 </html>

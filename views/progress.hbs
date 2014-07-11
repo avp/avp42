@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {{>head}}
+  <title>Progress</title>
+</head>
+<body>
+  {{>navbar}}
+
+  <h1>Progress</h1>
+
+  {{#each levels}}
+    <p>
+      <a href="/puzzle/{{answer}}">Level {{plusOne level}}</a>
+    </p>
+  {{/each}}
+</body>
+</html>

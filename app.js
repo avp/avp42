@@ -8,9 +8,10 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var hbs = require('hbs');
 var db = require('./util/db');
-var path = require('path');
 var favicon = require('serve-favicon');
 var MongoStore = require('connect-mongo')(session);
+
+var levels = require('./levels');
 
 passport.use(new LocalStrategy(function(username, password, done) {
   db.checkLogin(username, password, function(err, user) {
@@ -51,7 +52,7 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(session({
-  secret: 'flying squirrel',
+  secret: process.env['SESSION_SECRET'] || '3b9bb25a307ebbb2f265d77c121d25c2080ca242',
   resave: true,
   saveUninitialized: true,
   store: new MongoStore({
@@ -76,8 +77,20 @@ app.get('/', function(req, res) {
       users: _.chain(users).map(function(user) {
         return { id: user._id, username: user.username, level: user.level };
       }).sortBy('level').reverse().value(),
-      maxLevel: require('./levels').length - 1
+      maxLevel: levels.length - 1
     });
+  });
+});
+
+app.get('/progress', function(req, res) {
+  if (!req.user) {
+    return res.redirect('/');
+  }
+  res.render('progress.hbs', {
+    levels: _.filter(levels, function(level) {
+      return level.level < req.user.level;
+    }).reverse(),
+    currentUser: req.user
   });
 });
 

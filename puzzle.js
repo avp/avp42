@@ -18,6 +18,9 @@ router.get('/', function(req, res) {
 });
 
 router.get('/:level', function(req, res) {
+  if (!req.user) {
+    return res.redirect('/');
+  }
   var level = _.find(levels, {answer: req.params.level});
   if (!level || level.level + 1 > req.user.level) {
     return res.send(404);

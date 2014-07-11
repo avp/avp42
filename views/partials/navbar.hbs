@@ -1,11 +1,11 @@
 <div class="header">
   <span class="text-left link-header">
     <a href="/">Home</a>
-    {{#if currentUser}} | <a href="/puzzle">Puzzle</a>{{/if}}
+    {{#if currentUser}} | <a href="/puzzle">Puzzle</a> | <a href="/progress">Progress</a>{{/if}}
   </span>
   <span class="pull-right link-header">
     {{#if currentUser}}
-      Hello, {{currentUser.username}} | <a href="/logout">Logout</a>
+      {{currentUser.username}} | <a href="/logout">Logout</a>
     {{else}}
       <a href="/register">Register</a> | <a href="/login">Login</a>
     {{/if}}
