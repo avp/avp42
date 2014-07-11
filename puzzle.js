@@ -37,7 +37,7 @@ router.get('/:level', function(req, res) {
 
 router.post('/:id(\\d+)', function(req, res) {
   var id = _.parseInt(req.params.id, 10);
-  if (!id || id !== req.user.level) {
+  if (!id || !req.user || id !== req.user.level) {
     return res.send(404);
   }
   if (CryptoJS.SHA1(req.body.password.toLowerCase().trim()) === levels[id].answer) {
@@ -45,7 +45,6 @@ router.post('/:id(\\d+)', function(req, res) {
       if (err) {
         throw err;
       }
-
       req.user = user;
       res.redirect('/puzzle/' + levels[id].answer);
     });
