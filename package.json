@@ -1,6 +1,7 @@
 {
   "name": "avp42",
   "version": "0.0.0",
+  "repository": "https://github.com/avp/avp42.git",
   "description": "A puzzle website.",
   "main": "server/app.js",
   "scripts": {
