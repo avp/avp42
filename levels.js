@@ -101,6 +101,10 @@ module.exports = [
   },
   {
     level: 25,
+    answer: 'e49230d483acbefc3999fb61098b57ba665c9229'
+  },
+  {
+    level: 26,
     answer: Math.random().toString()
   }
 ];
